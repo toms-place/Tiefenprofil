@@ -112,8 +112,8 @@ const addData = function (p, T, C, Z, file) {
 						<th>p[kPa]</th>
 						<th>T[°C]</th>
 						<th>C[mg/l]</th>
-						<th>Höhe</th>
-						<th>Dichte</th>
+						<th>Tiefe[m]</th>
+						<th>Dichte ρf[kg/m³]</th>
 						<th>Aktion</th>
 					</tr>
 				</tbody>
@@ -223,7 +223,7 @@ const visualize = () => {
 	};
 
 	var layout = {
-		title: 'Höhenprofil',
+		title: 'Tiefenprofil',
 		grid: {
 			rows: 1,
 			columns: 4,
@@ -363,7 +363,7 @@ const exportData = () => {
 
 
 	let csv = Papa.unparse({
-		"fields": ["Druck", "Temperatur", "Salinität", "Dichte", "Höhe"],
+		"fields": ["Druck (p[kPa])", "Temperatur (°C)", "Salinität (C[mg/l])", "Dichte (ρf[kg/m³])", "Tiefe (m)"],
 		"data": dataArray
 	});
 

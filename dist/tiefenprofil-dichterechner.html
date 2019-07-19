@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+
+<body>
+
+	<header class="container">
+		<div class="left child">
+			<h1>Tool zum Errechnen der Dichte von Wasser</h1>
+			<p>Approximation with an accuracy of 0.5% for ρf in single liquid phase</p>
+		</div>
+		<div class="right child">
+			<a href="https://www.geologie.ac.at/" target="_blank" rel="noopener noreferrer">
+				<img src="https://www.geologie.ac.at/fileadmin/template/images/logo.jpg" alt="logo">
+			</a>
+		</div>
+	</header>
+
+	<main id="main">
+
+		<section id="calculation">
+			<div class="box">
+				<div class="inputLine">
+					<h3>Wählen Sie eine CSV Datei aus:</h3>
+				</div>
+				<div class="inputLine">
+					<input type="file" id="csvfiletoread" />
+				</div>
+				<div class="inputLine checkBoxLine">
+					<input type="checkbox" id="headerCheck" />
+					<label for="headerCheck">Hat die CSV Datei einen Header?</label>
+				</div>
+				<div class="inputLine multiButtonLine">
+					<button id="csvImportButton">Import</button>
+					<a id="download_link" download="tiefenprofil.csv" href=””><button>Export</button></a>
+				</div>
+			</div>
+			<div class="box inputField">
+				<div class="inputLine">
+					<h3>Geben Sie Werte ein:</h3>
+				</div>
+				<div class="inputLine">
+					<label for="p">p[kPa]</label>
+					<input id="p" type="text" step="0.001" placeholder="enter a number" />
+				</div>
+				<div class="inputLine">
+					<label for="T">T[°C]</label>
+					<input id="T" type="text" step="0.001" placeholder="enter a number" />
+				</div>
+				<div class="inputLine">
+					<label for="C">C[mg/l]</label>
+					<input id="C" type="text" step="0.001" placeholder="enter a number" />
+				</div>
+				<div class="inputLine">
+					<label for="Z">Höhe</label>
+					<input id="Z" type="text" step="0.001" placeholder="enter a number" />
+				</div>
+				<div class="inputLine buttonLine">
+					<button id="addData">Dichte berechnen</button>
+				</div>
+			</div>
+			<div class="box">
+				<h1>Dichte ρf[kg/m³]</h1>
+				<div id="output"></div>
+			</div>
+
+		</section>
+
+
+	</main>
+
+	<footer>
+		<h2>Publikation:</h2>
+		<p>Derivation of the coefficients of compressibility, thermal expansion and fluid density difference ratio for
+			reproducing aqueous NaCI density
+		</p>
+		<h2>
+			Author:
+		</h2>
+		<p>
+			F. Magri <br />
+			Free University of Berlin, Department of Hydrogeology, Berlin, Germany</p>
+		<h2>Software:</h2>
+		<p><a href="https://weber-thomas.at" target="_blank" rel="noopener noreferrer">Thomas Weber</a> </p>
+	</footer>
+
+
+	<script src="main.js">
+	</script>
+
+
+</body>
+
+</html>
