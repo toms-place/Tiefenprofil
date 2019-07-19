@@ -9,7 +9,7 @@
 2. gegebenfalls Felder löschen oder hinzufügen
 3. CSV Datei herunterladen (Export)
     - folgende Informationen erhalten Sie dann:
-    - Druck (p[kPa]),Temperatur (°C),Salinität (C[mg/l]),Dichte (ρf[kg/m³]),Tiefe (m)
+    - Druck (p[kPa]), Temperatur (°C), Salinität (C[mg/l]), Dichte (ρf[kg/m³]), Tiefe (m)
 
 ## Entwicklung
 
