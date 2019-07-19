@@ -1,0 +1,124 @@
+a {
+	color: #999;
+}
+
+a:hover {
+	color: #777;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	margin: 0px 0px 2px 0px;
+}
+
+table {
+	width: 100%;
+	border-spacing: 0;
+}
+
+th {
+	width: 20%;
+	padding: 10px
+}
+
+td {
+	width: 20%;
+	text-align: center;
+	padding: 5px;
+	border: 1px solid white;
+}
+
+header {
+	padding: 10px;
+	margin-bottom: 10px;
+	background-color: #333;
+	color: beige;
+	box-shadow: 2px 2px 2px #999;
+}
+
+header img {
+
+	object-fit: cover;
+	object-position: 0 100%;
+
+	width: 70px;
+	height: 40px;
+}
+
+main {
+	box-shadow: 2px 2px 2px #999;
+}
+
+section {
+	padding: 20px 10px;
+	background-color: #333;
+	color: beige;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin-bottom: 10px;
+	align-items: start;
+}
+
+footer {
+	padding: 10px;
+	background-color: #333;
+	color: beige;
+	box-shadow: 2px 2px 2px #999;
+}
+
+
+
+
+
+.container {
+	display: flex;
+	justify-content: space-between;
+
+}
+
+.inputLine {
+	padding: 5px;
+	display: flex;
+	justify-content: space-between;
+}
+
+#output {
+	color: #fff;
+	padding: 10px;
+	border: 2px solid beige;
+}
+
+.box {
+	width: 300px;
+	padding: 10px;
+	height: auto;
+}
+
+.checkBoxLine {
+	justify-content: space-around;
+}
+
+.inputField .inputLine input {
+	margin-left: 10px;
+}
+
+.multiButtonLine {
+	justify-content: flex-start;
+}
+
+.buttonLine {
+	justify-content: flex-end;
+}
+
+#calculation {
+	min-width: 300px;
+	justify-content: space-around;
+}
+
+.modebar-container,
+.modebar--hover {
+	position: relative !important;
+}

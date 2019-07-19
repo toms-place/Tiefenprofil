@@ -1,0 +1,23 @@
+{
+  "name": "wasserdichte",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "papaparse": "^5.0.0",
+    "plotly.js-dist": "^1.48.3",
+    "vis": "^4.21.0"
+  },
+  "devDependencies": {
+    "css-loader": "^3.0.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.6"
+  }
+}

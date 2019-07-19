@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		a {
+			color: #999;
+		}
+
+		a:hover {
+			color: #777;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4 {
+			margin: 0px 0px 5px 0px;
+		}
+
+		header {
+			padding: 10px;
+			margin-bottom: 10px;
+			background-color: #333;
+			color: beige;
+			box-shadow: 2px 2px 2px #999;
+		}
+
+		header img {
+
+			object-fit: cover;
+			object-position: 0 100%;
+
+			width: 70px;
+			height: 40px;
+		}
+
+		main {
+			box-shadow: 2px 2px 2px #999;
+		}
+
+		.container {
+			display: flex;
+			justify-content: space-between;
+
+		}
+
+		#input input {
+			display: block;
+			margin: 10px 0px 10px 0px;
+		}
+
+		#output {
+			color: #fff;
+			padding: 10px;
+			border: 2px solid beige;
+		}
+
+		.box {
+			width: 300px;
+		}
+
+		#calculation {
+			padding: 20px 10px;
+			background-color: #333;
+			color: beige;
+			display: flex;
+			flex-wrap: nowrap;
+			margin: auto;
+			min-width: 300px;
+		}
+
+		footer {
+			padding: 10px;
+			margin-top: 10px;
+			background-color: #333;
+			color: beige;
+			box-shadow: 2px 2px 2px #999;
+		}
+	</style>
+</head>
+
+<body>
+
+	<header class="container">
+		<div class="left child">
+			<h1>Tool zum Errechnen der Dichte</h1>
+			<p>Approximation with an accuracy of 0.5% for ρf in single liquid phase</p>
+		</div>
+		<div class="right child">
+			<a href="https://www.geologie.ac.at/" target="_blank" rel="noopener noreferrer">
+				<img src="https://www.geologie.ac.at/fileadmin/template/images/logo.jpg" alt="logo">
+			</a>
+		</div>
+	</header>
+
+	<main>
+
+		<section id="calculation">
+			<form action="">
+				<div id="input" class="box">
+					<label for="p">p[kPa]</label>
+					<input id="p" type="number" step="0.001" oninput=p_f() placeholder="enter a number">
+
+					<label for="T">T[°C]</label>
+					<input id="T" type="number" step="0.001" oninput=p_f() placeholder="enter a number">
+
+					<label for="C">C[mg/l]</label>
+					<input id="C" type="number" step="0.001" oninput=p_f() placeholder="enter a number">
+				</div>
+				<div id="right" class="box">
+					<h1>Dichte ρf[kg/m³]</h1>
+					<p id="output"></p>
+				</div>
+			</form>
+		</section>
+
+		<section>
+			<div id="visualization"> </div>
+		</section>
+
+	</main>
+
+	<footer>
+		<h2>Author:</h2>
+		<p><a href="https://weber-thomas.at" target="_blank" rel="noopener noreferrer">Thomas Weber</a> </p>
+
+		<h2>Publikation:</h2>
+		<h3>Derivation of the coefficients of compressibility, thermal expansion and fluid density difference ratio for
+			reproducing aqueous NaCI density
+		</h3>
+		<h4>
+			F. Magri <br />
+			Free University of Berlin, Department of Hydrogeology, Berlin, Germany
+		</h4>
+	</footer>
+	<script>const vis = require("vis")
+
+		const h0 = 0.00073104758291628
+		const h1 = -9.422037142360840E-10
+		const h2 = 1.821338928754860E-15
+		const j0 = -3.944677820299490E-10
+		const j1 = 7.533778133432170E-16
+		const j2 = -2.327332308407290E-22
+		const q1 = 0.0005257539357631470
+		const q2 = -5.45935900774016000E-10
+		const z0 = -6.62535827657940000E-13
+		const z1 = 6.31115867284297000E-18
+		const z2 = 2.74449263932997000E-23
+		const z3 = 7.51309156335764000E-18
+		const z4 = -1.89363763784246000E-23
+		const w0 = 5.71837437918073000E-10
+		const w1 = -4.99611267464002000E-15
+		const w2 = -2.55703586846164000E-20
+		const w3 = -6.48369162580799000E-15
+		const w4 = -5.31052146805903000E-18
+		const v0 = -2.05196047843108000E-07
+		const v1 = 1.58244686429457000E-12
+		const v2 = 8.63713589799872000E-18
+		const v3 = 2.19460816699582000E-12
+		const v4 = -5.31052146805903000E-18
+		const u4 = 8.57637064891050000E-16
+		const u3 = -3.75754889916101000E-10
+		const u2 = -1.40362639584169000E-15
+		const u1 = -2.42200447462305000E-10
+		const u0 = 0.00003936397979529
+		const s4 = -7.72586610400176000E-14
+		const s3 = 3.95348453688314000E-08
+		const s2 = 1.00323500324347000E-13
+		const s1 = 2.54428571106237000E-08
+		const s0 = -0.0063083048607919200
+		const r4 = 3.64183681207667000E-12
+		const r3 = -2.39000366864629000E-06
+		const r2 = -3.69287657496846000E-12
+		const r1 = -1.15547572846259000E-06
+		const r0 = -0.049491785362206100
+		const x = 999.843633188666
+		
+		const p_f = function() {
+			let p = document.getElementById("p").value
+			let T = document.getElementById("T").value
+			let C = document.getElementById("C").value
+		
+			let z = z0 + z1 * p + z2 * Math.pow(p, 2) + z3 * C + z4 * Math.pow(C, 2)
+			let w = w0 + w1 * p + w2 * Math.pow(p, 2) + w3 * C + w4 * Math.pow(C, 2)
+			let v = v0 + v1 * p + v2 * Math.pow(p, 2) + v3 * C + v4 * Math.pow(C, 2)
+			let u = u0 + u1 * p + u2 * Math.pow(p, 2) + u3 * C + u4 * Math.pow(C, 2)
+			let s = s0 + s1 * p + s2 * Math.pow(p, 2) + s3 * C + s4 * Math.pow(C, 2)
+			let r = r0 + r1 * p + r2 * Math.pow(p, 2) + r3 * C + r4 * Math.pow(C, 2)
+		
+			let out1 = Math.pow((-100), 2) * q2 + (-100) * q1 + (q2 * Math.pow(p, 2) + q1 * p)
+			let out2 = z * Math.pow(T, 6) + w * Math.pow(T, 5) + v * Math.pow(T, 4)
+			let out3 = u * Math.pow(T, 3) + s * Math.pow(T, 2) + r * (T)
+			let out4 = (j0 + j1 * p + j2 * Math.pow(p, 2)) * Math.pow(C, 2)
+			let out5 = (h0 + h1 * p + h2 * Math.pow(p, 2)) * C
+		
+			let sum = x + out1 + out2 + out3 + out4 + out5
+			console.log(sum)
+		
+			document.getElementById("output").innerHTML = sum + ' kg/m³'
+		}
+
+		p_f()
+	
+	</script>
+
+
+
+
+</body>
+
+</html>
