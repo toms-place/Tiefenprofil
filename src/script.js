@@ -232,6 +232,9 @@ const visualize = () => {
 			],
 			columnorder: 'left to right'
 		},
+		yaxis: {
+			title: 'Tiefe'
+		},
 		xaxis: {
 			title: 'Dichte ρf[kg/m³]',
 			titlefont: {
