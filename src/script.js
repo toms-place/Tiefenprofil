@@ -99,7 +99,7 @@ const addData = function (p, T, C, Z, file) {
 
 
 	let dichte = p_f(p, T, C, true)
-	data.push([p, T, C, dichte, dataCount, Z])
+	data.push([p, T, C, dichte, Z, dataCount])
 
 	if (addDataInit == true) {
 		let section = document.createElement("section");
@@ -156,7 +156,7 @@ const visualize = () => {
 
 	for (let i = 0; i < data.length; i++) {
 		xDensity.push(data[i][3])
-		y.push(data[i][5])
+		y.push(data[i][4])
 		xpressure.push(data[i][0])
 		xTemp.push(data[i][1])
 		xC.push(data[i][2])
@@ -223,10 +223,14 @@ const visualize = () => {
 	};
 
 	var layout = {
-		title: 'Dichte ρf[kg/m³]',
-		yaxis: {
-			title: 'Höhe[m]',
-			height: 800
+		title: 'Höhenprofil',
+		grid: {
+			rows: 1,
+			columns: 4,
+			subplots: [
+				['xy', 'x2y', 'x3y', 'x4y'],
+			],
+			columnorder: 'left to right'
 		},
 		xaxis: {
 			title: 'Dichte ρf[kg/m³]',
@@ -235,8 +239,7 @@ const visualize = () => {
 			},
 			tickfont: {
 				color: 'green'
-			},
-			side: 'top'
+			}
 		},
 		xaxis2: {
 			title: {
@@ -247,9 +250,7 @@ const visualize = () => {
 			},
 			tickfont: {
 				color: 'red'
-			},
-			overlaying: 'x',
-			side: 'top'
+			}
 
 		},
 		xaxis3: {
@@ -261,9 +262,7 @@ const visualize = () => {
 			},
 			tickfont: {
 				color: 'blue'
-			},
-			overlaying: 'x',
-			side: 'middle'
+			}
 		},
 		xaxis4: {
 			title: {
@@ -274,11 +273,9 @@ const visualize = () => {
 			},
 			tickfont: {
 				color: 'yellow'
-			},
-			overlaying: 'x',
-			side: 'bottom'
+			}
 		}
-	};
+	}
 
 	var plotData = [density, pressure, temperature, salinity];
 
@@ -342,6 +339,7 @@ const checkFileSupport = () => {
 
 					//here the file is loaded and will be parsed
 					parseFile(fileReader.result)
+					exportData()
 
 				}
 				fileReader.readAsText(fileTobeRead);
@@ -355,14 +353,37 @@ const checkFileSupport = () => {
 	}
 }
 
+const exportData = () => {
+
+	let dataArray = []
+
+	for (let i = 0; i < data.length; i++) {
+		dataArray.push([data[i][0], data[i][1], data[i][2], data[i][3], data[i][4]])
+	}
+
+
+	let csv = Papa.unparse({
+		"fields": ["Druck", "Temperatur", "Salinität", "Dichte", "Höhe"],
+		"data": dataArray
+	});
+
+	let csvData = new Blob([csv], {
+		type: 'text/csv'
+	});
+
+	let url = window.URL.createObjectURL(csvData);
+
+	document.getElementById('download_link').href = url;
+
+
+}
+
 
 const initHandler = () => {
 	document.getElementById('p').oninput = p_f
 	document.getElementById('T').oninput = p_f
 	document.getElementById('C').oninput = p_f
 	document.getElementById('addData').onclick = addData
-
-	//document.getElementById('csvExportButton').onclick = exportData
 
 	checkFileSupport()
 
@@ -409,7 +430,7 @@ class TrClass {
 
 	deleteRow(e) {
 		for (let i = 0; i < data.length; i++) {
-			if (data[i][4] == this.tr.id) {
+			if (data[i][5] == this.tr.id) {
 				data.splice(i, 1)
 			}
 		}
