@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "papaparse": "^5.0.0",
+    "papaparse": "^5.2.0",
     "plotly.js-dist": "^1.48.3",
     "vis": "^4.21.0"
   },
